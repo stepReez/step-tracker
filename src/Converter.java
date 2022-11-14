@@ -1,9 +1,11 @@
 public class Converter {
     double distance;
     double calories;
+    double calorieRatio = 50;
+    double stepLength = 0.75;
 
     public Converter(int steps) {
-        distance = steps * 0.75;
-        calories = (steps * 50) / 1000;
+        distance = steps * stepLength;
+        calories = (steps * calorieRatio) / 1000;
     }
 }

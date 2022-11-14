@@ -1,6 +1,11 @@
+import java.util.Scanner;
+
 public class StepTracker {
 
     int targetSteps = 10000;
+    String[] monthsNames = {"Январь", "Февраль", "Март", "Апрель",
+            "Май", "Июнь", "Июль", "Август",
+            "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
     MonthData[] monthToData;
 
     public StepTracker() {
@@ -14,23 +19,46 @@ public class StepTracker {
         int[] dayToData = new int[30];
     }
 
-    void stepInput (int month, int day, int steps) {
+    Scanner scanner = new Scanner(System.in);
+
+    void stepInput () {
+
+        System.out.println("Выберите месяц");
+        System.out.println("Отсчет месяцев начинается с нуля");
+        int month = scanner.nextInt();
+        System.out.println("Выберите день");
+        System.out.println("Отсчет дней начинается с единицы");
+        int day = scanner.nextInt();
+
+
         if (month < 0 || month > 11 || day < 1 || day > 30) {
             System.out.println("Введена некоректная дата");
-        } else if (steps < 0) {
-            System.out.println("Количесво шагов не может быть отрицательным");
         } else {
-            monthToData[month].dayToData[day - 1] = steps;
+
+            System.out.println("Введите колличесвто шагов");
+            int steps = scanner.nextInt();
+
+            if (steps < 0) {
+                System.out.println("Количесво шагов не может быть отрицательным");
+            } else {
+                monthToData[month].dayToData[day - 1] = steps;
+            }
         }
+
     }
 
-    void stepStats (int month) {
+    void stepStats () {
+        System.out.println("Выберите месяц");
+        int month = scanner.nextInt();
+
         int stepSum = 0;
         int max = monthToData[month].dayToData[0];
         int streak = 0;
         int streakCount = 0;
         double distance = 0;
         double calories = 0;
+
+        System.out.println("Статистика за " + monthsNames[month]);
 
         for (int i = 0; i < monthToData[month].dayToData.length; i++){
 
@@ -66,8 +94,10 @@ public class StepTracker {
         System.out.println("Лучшая серия: " + streak + " дней подряд");
     }
 
-    void targetChange(int target) {
+    void targetChange() {
 
-        targetSteps = target;
+        System.out.println("Введите новую цель");
+
+        targetSteps = scanner.nextInt();
     }
 }

@@ -9,39 +9,31 @@ public class Main {
         while (true) {
 
             printMenu();
-            int userInput = scanner.nextInt();
+            int inputMenuItem = scanner.nextInt();
 
-            if (userInput == 1) {
+            switch (inputMenuItem) {
+                case 1:
+                    stepTracker.stepInput();
+                    break;
+                case 2 :
+                    stepTracker.stepStats();
+                    break;
+                case 3:
+                    stepTracker.targetChange();
+                    break;
+                case 4:
+                    System.out.println("Выход из приложения");
+                    break;
+                default:
+                    System.out.println("Выбрана несуществующая команда");
+                    break;
+            }
 
-                System.out.println("Выберите месяц");
-                int month = scanner.nextInt();
-                System.out.println("Выберите день");
-                int day = scanner.nextInt();
-                System.out.println("Введите колличесвто шагов");
-                int steps = scanner.nextInt();
-
-                stepTracker.stepInput(month, day, steps);
-
-            } else if (userInput == 2) {
-
-                System.out.println("Выберите месяц");
-                int month = scanner.nextInt();
-                stepTracker.stepStats(month);
-
-            } else if (userInput == 3) {
-
-                System.out.println("Введите новую цель");
-                int target = scanner.nextInt();
-                stepTracker.targetChange(target);
-
-            } else if (userInput == 4) {
+            if (inputMenuItem == 4) {
                 break;
-            } else {
-                System.out.println("Выбрана несуществующая команда");
             }
 
         }
-        System.out.println("Выход из приложения");
     }
 
     public static void printMenu() {
