@@ -1,2 +1,2 @@
-# java-sprint1-hw
-First sprint homework
+# Java step tracker
+Простой счетчик шагов с подсчетом пройденой дистанции и сожженых калорий
